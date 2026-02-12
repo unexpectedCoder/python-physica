@@ -1,0 +1,9 @@
+Babel
+matplotlib
+numpy
+pandas
+pint
+pint-pandas
+scipy
+statsmodels
+ucertainties
