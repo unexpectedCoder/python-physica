@@ -72,7 +72,7 @@ distances = distance_data["distance"].pint.to("m").pint.magnitude
 distances_inv_sqr = 1 / distances**2
 mean_current = distance_data["mean_current"].pint.magnitude
 coeffs = np.polyfit(distances_inv_sqr, mean_current, 1)
-x = distances_inv_sqr.iloc[[0, -1]]
+x = [0, distances_inv_sqr.max()]
 # - график фототока от обратного квадрата расстояния
 fig2, ax2 = plt.subplots(num="distance-photocurrent")
 ax2.plot(distances_inv_sqr, mean_current, ls="", marker="x", c="k", markersize=5)
@@ -120,3 +120,6 @@ print(" - ширина запрещённой зонны:", round(energy_gap, 3)
 # Сохранение в файл
 with open(output_dir / "results.txt", "w", encoding="utf-8") as f:
     f.write(f"Ширина запрещённой зоны: {energy_gap:.3f}\n")
+
+### Показ интерактивных графиков ###
+# plt.show()
