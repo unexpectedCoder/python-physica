@@ -21,7 +21,7 @@ output_dir = Path(".")
 # Настройка системы единиц измерения
 ureg = pint.UnitRegistry(fmt_locale="ru_RU.UTF-8")
 ureg.load_definitions("units.txt")
-ureg.formatter.default_format = "~P"  # Использовать краткий формат
+ureg.formatter.default_format = "~"  # Использовать краткий формат
 pint_pandas.PintType.ureg = ureg
 # Физические константы
 h = h * ureg("joule * second")  # постоянная Планка
@@ -118,7 +118,7 @@ print("Результаты:")
 energy_gap = root_scalar(tangent, bracket=[0, energy[0]]).root * ureg.eV
 print(" - ширина запрещённой зонны:", round(energy_gap, 3))
 # Сохранение в файл
-with open(output_dir / "results.txt", "w", encoding="utf-8") as f:
+with open(output_dir / "results-inner-photoeffect.txt", "w", encoding="utf-8") as f:
     f.write(f"Ширина запрещённой зоны: {energy_gap:.3f}\n")
 
 ### Показ интерактивных графиков ###
