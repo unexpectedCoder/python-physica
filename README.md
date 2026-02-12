@@ -5,6 +5,12 @@
 * построение графиков с аппроксимацией;
 * и др.
 
+В [external-photoeffect.py](external-photoeffect.py) приведён пример использования таких библиотек, как:
+* [SciPy](https://scipy.org/) - обработка статистических данных;
+* [Pandas](https://pandas.pydata.org/) - работа с табличными данными;
+* [uncertainties](https://pythonhosted.org/uncertainties/index.html) - работа с погрешностями (неопределённостями) в измерениях;
+* [Pint](https://pint.readthedocs.io/en/stable/) - работа с единицами измерения.
+
 В [inner-photoeffect.py](inner-photoeffect.py) приведён пример использования таких библиотек, как:
 * [Matplotlib](https://matplotlib.org/) - построение графиков (визуализация);
 * [NumPy](https://numpy.org/) - работа с массивами чисел;
