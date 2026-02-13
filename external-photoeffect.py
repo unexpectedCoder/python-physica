@@ -1,5 +1,4 @@
 # Подключение необходимых пакетов
-import locale
 from pathlib import Path
 
 import numpy as np
@@ -10,8 +9,6 @@ from scipy import stats
 from scipy.constants import c, e, h
 from uncertainties import ufloat
 
-# Настройка локализации
-locale.setlocale(locale.LC_ALL, "ru_RU.UTF-8")
 # Настройка единиц измерения
 ureg = pint.UnitRegistry(fmt_locale="ru_RU.UTF-8")  # русский язык единиц измерения
 ureg.load_definitions("units.txt")  # загрузка пользовательских единиц измерения

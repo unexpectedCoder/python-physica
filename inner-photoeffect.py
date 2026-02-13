@@ -1,4 +1,3 @@
-import locale
 from pathlib import Path
 
 import matplotlib.pyplot as plt
@@ -9,11 +8,6 @@ import pint_pandas
 from scipy.constants import c, h
 from scipy.optimize import root_scalar
 
-### Подготовка ###
-# В качестве десятичного разделителя использовать запятую, а не точку
-locale.setlocale(locale.LC_NUMERIC, "ru_RU.UTF-8")
-# Стиль графика взять из файла с его описанием
-plt.style.use("sciart.mplstyle")
 # Директории
 measurements_dir = Path("measurements")
 figures_dir = Path("figures")
@@ -27,7 +21,7 @@ pint_pandas.PintType.ureg = ureg
 h = h * ureg("joule * second")  # постоянная Планка
 c = c * ureg("meter / second")  # скорость света в вакууме
 
-### Чтение данных измерений из файлов ###
+# Чтение данных измерений из файлов ###
 angle_data = pd.read_csv(
     measurements_dir / "angle-photocurrent.csv", header=[0, 1], dtype=float
 ).pint.quantify(level=1)
@@ -38,7 +32,7 @@ spectra_data = pd.read_csv(
     measurements_dir / "spectra.csv", header=[0, 1], dtype=float
 ).pint.quantify(level=1)
 
-### Расчёты ###
+### РАСЧЁТЫ ###
 current_cols = ["current1", "current2", "current3"]
 angle_data["mean_current"] = angle_data[current_cols].mean(axis=1)
 distance_data["mean_current"] = distance_data[current_cols].mean(axis=1)
@@ -47,7 +41,10 @@ spectra_data["current_AB"] = spectra_data["current"] / (
     spectra_data["A"] * spectra_data["B"]
 )
 
-### Визуализация ###
+# Визуализация
+# Стиль графика взять из файла с его описанием
+plt.style.use("sciart.mplstyle")
+
 # - подготовка данных
 cosine = np.cos(np.radians(angle_data["angle"].pint.magnitude))
 mean_current = angle_data["mean_current"].pint.magnitude
@@ -121,5 +118,5 @@ print(" - ширина запрещённой зонны:", round(energy_gap, 3)
 with open(output_dir / "results-inner-photoeffect.txt", "w", encoding="utf-8") as f:
     f.write(f"Ширина запрещённой зоны: {energy_gap:.3f}\n")
 
-### Показ интерактивных графиков ###
+# Показ интерактивных графиков
 # plt.show()
